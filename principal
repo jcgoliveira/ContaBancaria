@@ -1,0 +1,129 @@
+package principal;
+import java.util.Scanner;
+
+public class Principal {
+
+    private static float valor;
+    public static void main(String[] args){
+        Conta minhaConta = new Conta();
+        Scanner sc = new Scanner(System.in);
+    String nome;
+    int num, operacao;
+    float saldo, valor, lim;
+        do{
+            System.out.println(" * Menu * > Conta Bancaria");
+            System.out.println("1- digitar dados:");
+            System.out.println("2- ver dados");
+            System.out.println("3- Depositar valor na conta");
+            System.out.println("4- Sacar valor da conta");
+            System.out.println("5- Mostrar saldo da conta");
+            System.out.println("0 - Sair");
+            sc.nextLine();
+            operacao = sc.nextInt();
+            switch(operacao){
+                
+                case 1 :  
+                    System.out.println("Entrar com nome:"); 
+                    nome = sc.nextLine();
+                    
+                    System.out.println("Entre com  Numero de conta: "); 
+                    num = sc.nextInt();
+
+                    System.out.println("Entrar com saldo: "); 
+                    saldo = sc.nextFloat();
+                    
+                    System.out.println("Entrar com limite de valor");
+                    lim = sc.nextFloat();
+                    
+                    minhaConta.inseredados(nome, num, saldo, lim);
+                    
+                break;
+                case 2 :
+                    minhaConta.mostrardado();
+                break;
+                case 3 :   
+                    System.out.println("Entrar com valor para ser depositado: ");
+                    valor = sc.nextFloat();
+                    minhaConta.deposita(valor);
+                break;
+                case 4:
+                    minhaConta.mostrarsal();
+                    System.out.println("Entre com o valor a ser sacado: ");
+                    valor = sc.nextFloat();
+                    minhaConta.saca(valor);
+                break;
+                case 5:
+                    minhaConta.mostrarsal();
+                break;
+            }
+            }while(op != 0);
+        }
+    }
+
+package principal;
+import java.util.Scanner;
+
+public class Conta {
+    private int NumeroConta;
+    public int Operacao;
+    private String Proprietario; 
+    private double Saldo;
+    private double Limite;
+    
+    public Conta() {
+        this.NumeroConta=0;
+        this.Proprietario=" ";
+        this.Saldo=0;
+        this.Limite=0; 
+    }
+    public int getNumeroConta() {
+        return NumeroConta; 
+    }
+    public void setNumeroCointa(int NumeroConta) {
+        this.NumeroConta = NumeroConta; 
+    }
+    public String getProprietario() {
+        return Proprietario; 
+    }
+    public void setProprietario(String Proprietario) {
+        this.Proprietario = Proprietario; 
+    }
+    public double getSaldo() {
+        return Saldo;
+    }
+    public void setSaldo(double Saldo) {
+        this.Saldo = Saldo;
+    }
+    public double getLimite() {
+        return Limite;
+    }
+    public void setLimite(double Limite) {
+        this.Limite = Limite;
+    }
+    boolean saca(double quantidade) {
+        if (this.Saldo<quantidade)
+    return false;
+    else {
+        this.Saldo = this.Saldo - quantidade;
+    return true; 
+        }
+    }
+    void deposita(double quantidade) {
+        this.Saldo = this.Saldo + quantidade;
+    }
+    void InserirDados(String a, int b, float c, float l){
+        this.Proprietario = a;
+        this.NumeroConta = b;
+        this.Saldo = c;
+        this.Limite = l;
+    }
+    void MostrarDadoConta(){
+        System.out.println("Proprietario da Conta: " + this.getProprietario());
+        System.out.println("Numero da Conta: " + this.getNumeroConta());
+        System.out.println("Saldo atual: " + this.getSaldo());
+    }
+    void MostrArsal(){
+            System.out.println("Saldo Atual: " + this.getSaldo()); 
+        
+    }
+}
